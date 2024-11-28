@@ -251,6 +251,13 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.diagnostic.config {
+  virtual_text = false, -- Disable inline text by default
+  underline = true,
+  signs = true,
+  update_in_insert = false,
+}
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -698,6 +705,13 @@ require('lazy').setup {
   },
 
   {
+    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
+    config = function()
+      require('lsp_lines').setup()
+    end,
+  },
+
+  {
     'ray-x/go.nvim',
     enabled = false,
     dependencies = { -- optional packages
@@ -935,6 +949,77 @@ require('lazy').setup {
   --     render = 'minimal',
   --   },
   -- },
+  {
+    'declancm/cinnamon.nvim',
+    version = '*', -- use latest release
+    opts = {
+      -- change default options here
+    },
+
+    config = function()
+      require('cinnamon').setup {
+        -- Disable the plugin
+        disabled = false,
+
+        keymaps = {
+          -- Enable the provided 'basic' keymaps
+          basic = false,
+          -- Enable the provided 'extra' keymaps
+          extra = false,
+        },
+
+        ---@class ScrollOptions
+        options = {
+          -- The scrolling mode
+          -- `cursor`: animate cursor and window scrolling for any movement
+          -- `window`: animate window scrolling ONLY when the cursor moves out of view
+          mode = 'cursor',
+
+          -- Only animate scrolling if a count is provided
+          count_only = false,
+
+          -- Delay between each movement step (in ms)
+          delay = 5,
+
+          max_delta = {
+            -- Maximum distance for line movements before scroll
+            -- animation is skipped. Set to `false` to disable
+            line = false,
+            -- Maximum distance for column movements before scroll
+            -- animation is skipped. Set to `false` to disable
+            column = false,
+            -- Maximum duration for a movement (in ms). Automatically scales the
+            -- delay and step size
+            time = 1000,
+          },
+
+          step_size = {
+            -- Number of cursor/window lines moved per step
+            vertical = 1,
+            -- Number of cursor/window columns moved per step
+            horizontal = 2,
+          },
+
+          -- Optional post-movement callback. Not called if the movement is interrupted
+          callback = function() end,
+        },
+      }
+    end,
+  },
+
+  {
+    'folke/twilight.nvim',
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
 
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
