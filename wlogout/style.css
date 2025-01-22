@@ -1,0 +1,85 @@
+window {
+    font-family: FiraCode;
+    font-size: 16px;
+    color: #cdd6f4; /* text */
+    background-color: rgba(30, 30, 46, 0.5);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    background-color: rgba(30, 30, 46, 1);
+    margin: 5px;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: #fab387;
+    color: #1e1e2e;
+}
+
+button:focus {
+    background-color: #fab387;
+    color: #1e1e2e;
+}
+
+#lock {
+    background-image: image(url("./lock.png"));
+}
+#lock:focus {
+    background-image: image(url("./lock-hover.png"));
+}
+#lock:hover {
+    background-image: image(url("./lock-hover.png"));
+}
+
+#logout {
+    background-image: image(url("./logout.png"));
+}
+#logout:focus {
+    background-image: image(url("./logout-hover.png"));
+}
+#logout:hover {
+    background-image: image(url("./logout-hover.png"));
+}
+
+#suspend {
+    background-image: image(url("./sleep.png"));
+}
+#suspend:focus {
+    background-image: image(url("./sleep-hover.png"));
+}
+#suspend:hover {
+    background-image: image(url("./sleep-hover.png"));
+}
+
+#shutdown {
+    background-image: image(url("./power.png"));
+}
+#shutdown:focus {
+    background-image: image(url("./power-hover.png"));
+}
+#shutdown:hover {
+    background-image: image(url("./power-hover.png"));
+}
+
+#reboot {
+    background-image: image(url("./restart.png"));
+}
+#reboot:focus {
+    background-image: image(url("./restart-hover.png"));
+}
+#reboot:hover {
+    background-image: image(url("./restart-hover.png"));
+}
+
+#hibernate {
+  background-image: image(url("./restart.png"));
+}
+#hibernate:focus {
+  background-image: image(url("./restart-hover.png"));
+}
+#hibernate:hover {
+  background-image: image(url("./restart-hover.png"));
+}
