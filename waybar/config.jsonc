@@ -4,8 +4,8 @@
 // sourced from header module //
 
     "layer": "top",
-    "position": "bottom",
-    "mod": "dock",
+    "position": "top",
+    "mod": "floating",
     "height": 35,
     "exclusive": true,
     "passthrough": false,
@@ -16,8 +16,8 @@
 // positions generated based on config.ctl //
 
 	"modules-left": ["custom/l_end", "custom/power", "custom/r_end", "custom/l_end", "hyprland/workspaces", "custom/r_end", "custom/l_end", "wlr/taskbar","custom/spotify","custom/r_end",""],
-	"modules-center": ["custom/l_end","clock","custom/r_end","custom/padd", "custom/l_end", "custom/music", "custom/caway", "custom/r_end"],
-	"modules-right": ["custom/l_end","backlight","network","pulseaudio","custom/notifications","custom/keybindhint","custom/r_end"],
+	"modules-center": ["custom/l_end","clock","custom/r_end","custom/padd", "custom/l_end", "custom/r_end"],
+	"modules-right": ["custom/media", "custom/music", "custom/l_end","network","pulseaudio","custom/notifications","custom/keybindhint","custom/r_end"],
 
 
 // sourced from modules based on config.ctl //
@@ -29,9 +29,9 @@
     //     "on-scroll-up": "playerctl next",
     //     "on-scroll-down": "playerctl previous",
     // },
-    "custom/music": {
+    "custom/media": {
         "format": "  {}",
-        "escape": true,
+        "escape": false,
         "interval": 1,
         "tooltip": false,
         "exec": "playerctl metadata --format='{{ title }} ~ {{ artist }} '",
@@ -41,22 +41,34 @@
         "max-length": 50
     },
 
-    "custom/caway": {
-        "format": "{icon}{}",
+    "custom/music": {
+        "format": "{icon} {0} ",
         "format-icons": {
-            // "Playing": " ", // Uncomment if not using caway
+            "Playing": " ", // Uncomment if not using caway
             "Paused": " ",
             "Stopped": "&#x202d;ﭥ " // This stop symbol is RTL. So &#x202d; is left-to-right override.
         },
-        "escape": true,
-        "tooltip": true,
-        "exec": "./caway",
-        "return-type": "json",
+        "escape": false,
+        "tooltip": false,
+
+        // caway (broken)
+        // "exec": "bash ~/.config/waybar/caway.sh -f 60",
+        // "return-type": "json",
+
+        // cava
+        "exec": "bash ~/.config/waybar/cava.sh",
+
         "on-click": "playerctl play-pause",
         "on-scroll-up": "playerctl previous",
         "on-scroll-down": "playerctl next",
         "on-click-right": "g4music",
-        "max-length": 35
+    },
+
+    "custom/airpods": {
+        "format": "{icon} {0} ",
+        "exec": "bash ~/.config/waybar/scripts/bluetooth.sh --status F0:04:E1:E8:D4:39",
+        "interval": 2,
+        "on-click": "bash ~/.config/waybar/scripts/bluetooth.sh --toggle F0:04:E1:E8:D4:39 &",
     },
 
     "hyprland/workspaces": {
@@ -72,8 +84,6 @@
             "7": "7",
             "8": "8"
         },
-        "icon-size": 50,
-        "sort-by-number": true,
         "persistent-workspaces": {
             "1": [],
             "2": [],
